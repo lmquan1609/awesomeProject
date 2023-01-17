@@ -30,4 +30,4 @@ func runService(db *gorm.DB) error {
 		})
 	})
 	return r.Run()
-})
+}
