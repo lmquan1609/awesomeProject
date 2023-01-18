@@ -1,6 +1,7 @@
 package restaurantbiz
 
 import (
+	"awesomeProject/common"
 	"awesomeProject/modules/restaurant/restaurantmodel"
 	"context"
 	"errors"
@@ -29,6 +30,9 @@ func (biz *getRestaurantBiz) GetRestaurant(
 	result, err := biz.store.FindDataByCondition(ctx, map[string]interface{}{"id": id})
 
 	if err != nil {
+		if err == common.RecordNotFound {
+			return nil, err
+		}
 		return nil, err
 	}
 
