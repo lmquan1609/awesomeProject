@@ -1,6 +1,7 @@
 package restaurantstorage
 
 import (
+	"awesomeProject/common"
 	"awesomeProject/modules/restaurant/restaurantmodel"
 	"context"
 )
@@ -9,7 +10,7 @@ func (s *sqlStore) UpdateData(ctx context.Context, id int, data *restaurantmodel
 	db := *s.db
 
 	if err := db.Where("id = ?", id).Updates(data).Error; err != nil {
-		return err
+		return common.ErrDB(err)
 	}
 	return nil
 }
