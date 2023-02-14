@@ -8,8 +8,9 @@ import (
 
 type Restaurant struct {
 	common.SQLModel `json:",inline"`
-	Name            string `json:"string" gorm:"column:string;"`
-	Addr            string `json:"address" gorm:"column:addr;"`
+	Name            string        `json:"string" gorm:"column:string;"`
+	Addr            string        `json:"address" gorm:"column:addr;"`
+	Logo            *common.Image `json:"logo" gorm:"column:logo;"`
 }
 
 func (Restaurant) TableName() string {
@@ -17,8 +18,9 @@ func (Restaurant) TableName() string {
 }
 
 type RestaurantUpdate struct {
-	Name *string `json:"string" gorm:"column:string;"`
-	Addr *string `json:"address" gorm:"column:addr;"`
+	Name *string       `json:"string" gorm:"column:string;"`
+	Addr *string       `json:"address" gorm:"column:addr;"`
+	Logo *common.Image `json:"logo" gorm:"column:logo;"`
 }
 
 func (RestaurantUpdate) TableName() string {
@@ -26,8 +28,9 @@ func (RestaurantUpdate) TableName() string {
 }
 
 type RestaurantCreate struct {
-	Name string `json:"string" gorm:"column:string;"`
-	Addr string `json:"address" gorm:"column:addr;"`
+	Name string        `json:"string" gorm:"column:string;"`
+	Addr string        `json:"address" gorm:"column:addr;"`
+	Logo *common.Image `json:"logo" gorm:"column:logo;"`
 }
 
 func (RestaurantCreate) TableName() string {
