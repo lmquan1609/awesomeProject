@@ -4,7 +4,6 @@ import (
 	"awesomeProject/common"
 	"awesomeProject/modules/restaurant/restaurantmodel"
 	"context"
-	"errors"
 )
 
 type GetRestaurantStore interface {
@@ -31,13 +30,13 @@ func (biz *getRestaurantBiz) GetRestaurant(
 
 	if err != nil {
 		if err == common.RecordNotFound {
-			return nil, err
+			return nil, common.ErrCannotGetEntity(restaurantmodel.EntityName, err)
 		}
-		return nil, err
+		return nil, common.ErrCannotGetEntity(restaurantmodel.EntityName, err)
 	}
 
 	if result.Status == 0 {
-		return nil, errors.New("data deleted")
+		return nil, common.ErrEntityDeleted(restaurantmodel.EntityName, nil)
 	}
-	return result, err
+	return result, nil
 }
