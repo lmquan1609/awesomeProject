@@ -2,7 +2,7 @@ package ginrestaurant
 
 import (
 	"awesomeProject/common"
-	"awesomeProject/component"
+	"awesomeProject/component/component"
 	"awesomeProject/modules/restaurant/restaurantbiz"
 	"awesomeProject/modules/restaurant/restaurantmodel"
 	"awesomeProject/modules/restaurant/restaurantstorage"

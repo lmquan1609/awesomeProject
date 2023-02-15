@@ -2,7 +2,7 @@ package middleware
 
 import (
 	"awesomeProject/common"
-	"awesomeProject/component"
+	"awesomeProject/component/component"
 	"github.com/gin-gonic/gin"
 )
 
