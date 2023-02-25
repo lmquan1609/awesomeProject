@@ -15,9 +15,7 @@ func CreateRestaurant(appCtx component.AppContext) gin.HandlerFunc {
 		var data restaurantmodel.RestaurantCreate
 
 		if err := c.ShouldBind(&data); err != nil {
-			c.JSON(401, gin.H{
-				"error": err.Error(),
-			})
+			panic(common.ErrInvalidRequest(err))
 			return
 		}
 
@@ -25,10 +23,7 @@ func CreateRestaurant(appCtx component.AppContext) gin.HandlerFunc {
 		biz := restaurantbiz.NewCreateRestaurantBiz(store)
 
 		if err := biz.CreateRestaurant(c.Request.Context(), &data); err != nil {
-			c.JSON(401, gin.H{
-				"error": err.Error(),
-			})
-			return
+			panic(err)
 		}
 		c.JSON(http.StatusOK, common.SimpleSuccessResponse(data))
 	}
